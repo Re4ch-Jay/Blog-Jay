@@ -5,43 +5,29 @@
    
     <%- include('../partials/nav.ejs') %> 
 
-    <h2 class="blogs content">All reviews</h2>
+    <h2 class="blogs content">
+      All reviews
+    </h2>    
     <div class="review button">
        <a href="reviewindex/create">Post Review</a>
     </div>
     
-    <div class="blogs content">
+    <div class="blogs content review-list">
         
         <% if(reviews.length > 0){ %> 
             <% reviews.forEach(review => { %> 
-                <a class="single">
+                <a class="review" href="/reviewindex/<%= review._id %> ">
                     <h3 class="snippet">Username: <%= review.username %></h3>
                     <h4 class="snippet">Email: <%= review.email %></h4>
                     <p class="snippet"><span>Comment:</span><br>  <%= review.review %></p> 
-                    <p class="snippet date">Posted on: <%= review.createdAt %></p>
-                    <button class="delete-review" data-doc="<%= review._id %>">Delete</button>                      
+                    <p class="snippet date">Posted on: <%= review.createdAt %></p>  
                </a>
             <% }) %> 
         <% }else { %> 
             <p class="no-reviews">There are no reviews to display</p>
             <% } %> 
     </div>
-    <%- include('../partials/footer.ejs') %> 
-
-    <script>
-        const trashcan = document.querySelector('button.delete-review');
-        trashcan.addEventListener('click', (e) => {
-          const endpoint = `/reviewIndex/${trashcan.dataset.doc}`;
-    
-          fetch(endpoint, {
-            method: 'DELETE',
-          })
-          .then(response => response.json())
-          .then(data => window.location.href = data.redirect)
-          .catch(err => console.log(err));
-        }); 
-      </script>
-
+    <%- include('../partials/footer.ejs') %>    
 
 </body>
 </html>

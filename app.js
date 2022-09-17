@@ -4,7 +4,7 @@ const morgan = require('morgan')
 const mongoose = require('mongoose');
 const blogRoutes = require('./routes/blogRoutes')
 const reviewRoutes = require('./routes/reviewRoutes')
-const PORT = 3000 ||  3500;
+const PORT = 3500;
 
 
 // connect to mongodb

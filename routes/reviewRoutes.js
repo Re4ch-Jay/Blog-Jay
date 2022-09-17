@@ -8,6 +8,8 @@ router.post('/', reviewController.review_create_post)
 
 router.get('/create', reviewController.review_create_get)
 
+router.get('/:id', reviewController.review_delete)
+
 router.delete('/:id', reviewController.review_delete)
 
 module.exports = router;

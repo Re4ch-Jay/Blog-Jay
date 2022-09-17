@@ -1,4 +1,5 @@
 const Blog = require('../models/blogs');
+// routes to home
 const blog_index = (req, res) => {
     Blog.find().sort({createdAt: -1})
         .then(result => {
@@ -9,7 +10,7 @@ const blog_index = (req, res) => {
         })
 }
 
-
+// Routes to single data
 const blog_details = (req, res) => {
     const id = req.params.id
     Blog.findById(id)
@@ -17,15 +18,17 @@ const blog_details = (req, res) => {
             res.render('blogs/details', {blog: result, title: 'Blog Details'})
         })
         .catch(err => {
-            res.status(404).render('404', {title: '404'})
+            res.status(404).render('404', {title: '404'}) 
             console.log(err)
         })
 }
 
+// Routes to create page
 const blog_create_get = (req, res) => {
     res.render('blogs/create', {title: 'Create'})
 }
 
+// Post method
 const blog_create_post = (req, res) => {
     const blog = new Blog(req.body)
 
@@ -38,8 +41,10 @@ const blog_create_post = (req, res) => {
         })
 }
 
+// delete request
 const blog_delete = (req, res) => {
     const id = req.params.id
+    console.log(req.params.id)
     Blog.findByIdAndDelete(id)
         .then(result => {
             res.json({redirect:'/blogs'})

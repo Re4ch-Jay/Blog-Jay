@@ -171,9 +171,13 @@
       border-radius: 10px;
     }
 
-    .review a:hover{
+    .content.review a:hover{
       background: white;
       color: #d73691;
+    }
+
+    .review-list a:hover{
+      text-decoration: line-through;
     }
 
     .no-reviews{
