@@ -27,13 +27,6 @@ const review_create_post = (req, res) => {
         })
 }
 
-const review_get_id = (req, res) => {
-    const id = req.params.id
-    Review.findById(id)
-        .then(result => res.render({review: result}))
-        .catch(err => console.log(err))
-}
-
 const review_delete = (req, res) => {
     const id = req.params.id
     Review.findByIdAndDelete(id)
@@ -49,6 +42,5 @@ module.exports = {
     review_index,
     review_create_get,
     review_create_post,
-    review_get_id,
     review_delete
 }
